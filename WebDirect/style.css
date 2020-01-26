@@ -19,3 +19,13 @@
 .btn{
     margin-left: 10px;
 }
+
+.urls{
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
+
+#urls{
+    margin-top: 20px;
+}
