@@ -14,7 +14,7 @@ for(let i = 0; i < urls.length; i++){
 }
 
 function urlTemplate(url){ 
-    return (`<div class='urls'>` + url + `</div>`)
+    return (`<div class='urls'>` + `<a href="` + url + `">` +  url + `</a>` + `</div>`)
 }
 function addURL(e){
     e.preventDefault();
