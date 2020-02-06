@@ -3,3 +3,12 @@
     justify-content: center;
     font-size: 7vw;
 }
+
+.secret{
+    position: absolute;
+    background: black;
+    bottom: 0;
+    right: 0;
+    width: 5vh;
+    height: 5vh;
+}
