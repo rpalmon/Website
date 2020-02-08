@@ -7,7 +7,108 @@
     <link rel="stylesheet" href="404.css">
     <title>Page Not Found!</title>
 </head>
-<body>
-    Error, Page not found!
+<body id="main">
+    <div id="error">
+        404
+        <div class="line"></div>
+        Page Not Found
+    </div>
+
+    <script>
+        const main = document.getElementById('main');
+        const error = document.getElementById('error');
+
+        console.log("Window Size: ", window.innerWidth, window.innerHeight)
+        function placeDiv(x_pos, y_pos) {
+            // console.log("Error Position: ", x_pos, y_pos)
+
+            error.style.position = "absolute";
+            error.style.left = x_pos+'px';
+            error.style.top = y_pos+'px';
+
+            error.x = x_pos;
+            error.y = y_pos;
+        }
+
+
+        function random_rgba() {
+            var o = Math.round, r = Math.random, s = 255;
+            return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+        }
+        // placeDiv(window.innerWidth-error.offsetWidth, window.innerHeight-error.offsetHeight)
+        
+        function SetBottomRight() {
+            placeDiv(window.innerWidth-error.offsetWidth, window.innerHeight-error.offsetHeight)
+            // console.log(window.innerWidth-error.offsetWidth, window.innerHeight-error.offsetHeight)
+        }
+
+        SetBottomRight();
+
+        function Stop() {
+            window.onload = "";
+        }
+
+        function Animate() {
+               
+            //Bottom Right: 
+            //window.innerWidth-error.offsetWidth, window.innerHeight-error.offsetHeight
+
+            let pos = {x : 0, y : 0};
+            let direction = {h: 'right', v: 'down'}
+            function MoveDirection(){
+                if(direction.h === 'right'){
+                    pos.x += 1;
+                }
+                if(direction.h === 'left'){
+                    pos.x -= 1;
+                }
+                if(direction.v === 'down'){
+                    pos.y += 1;
+                }
+                if(direction.v === 'up'){
+                    pos.y -= 1;
+                }
+            }
+
+            function HitEdge(){
+                if(pos.x >= window.innerWidth-error.offsetWidth){
+                    console.log('bounce')
+                    direction.h = 'left';
+                    return true;
+                }
+                if(pos.x <= 0){
+                    console.log('bounce');
+                    direction.h = 'right';
+                    return true;
+                }
+                if(pos.y >= window.innerHeight-error.offsetHeight){
+                    console.log('bounce');
+                    direction.v = 'up';
+                    return true;
+                }
+                if(pos.y <= 0){
+                    console.log('bounce');
+                    direction.v = 'down';
+                    return true;
+                }
+            }
+
+            var id = setInterval(frame, 7);
+            function frame() {
+                // console.log(pos)
+                // console.log("test")
+                MoveDirection();
+                if(HitEdge()){
+                    error.style.background = random_rgba();
+                }
+                placeDiv(pos.x, pos.y);
+                // console.clear();
+            }
+        }
+        
+        window.onload = Animate();
+
+        // window.onresize = Update();
+   </script>
 </body>
 </html>
